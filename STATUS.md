@@ -1,6 +1,7 @@
 # Project Status
 
 > 이 파일은 프로젝트의 현재 위치만 짧고 명확하게 보여주는 상황판이다.
+> 문서 위치와 최신 결정의 상세 내용은 `PROJECT_BOARD.md`를 먼저 확인한다.
 
 ## Current
 
@@ -9,7 +10,20 @@
 - Platform: `Windows`
 - Initial vendor: `TP-Link`
 - Test device: `TP-Link Archer C50 v6`
+- Overall audit: `CONDITIONAL PASS`
+- PHASE 0 entry: `PASS`
+- PHASE 1 development: `HOLD`
 - Overall state: `IN PROGRESS`
+
+## Registered governing documents
+
+| Type | Document | Status |
+|---|---|---|
+| Product baseline | `Router_Security_Checker_PRD_v0.1.md` | ACTIVE |
+| Research plan | `docs/research/Router_Security_Checker_Internet_Research_PRD_v0.1.md` | ACTIVE |
+| Manager audit | `docs/audit/Router_Security_Checker_Audit_Report_v0.1.md` | CURRENT |
+| Project board | `PROJECT_BOARD.md` | MANDATORY |
+| AI entry rules | `AGENTS.md` | MANDATORY |
 
 ## Workstream status
 
@@ -17,23 +31,38 @@
 |---|---|---|
 | Product definition | DONE | PRD v0.1 기준선 존재 |
 | Team operating rules | DONE | NOTICE.md 적용 |
+| Project document routing | DONE | PROJECT_BOARD.md / AGENTS.md 적용 |
+| PHASE 0 research plan | DONE | Research PRD v0.1 등록 |
 | Manual device inspection | READY | Test Device #001 수행 필요 |
-| Router discovery research | READY | 수동 검사 결과와 병행 |
+| Router discovery research | READY | Identity 조사부터 수행 |
 | Router identification | BLOCKED | 실제 장비 근거 필요 |
-| Firmware intelligence | BLOCKED | 모델/펌웨어 식별 근거 필요 |
+| Firmware intelligence | BLOCKED | Identity / 실제 펌웨어 정보 필요 |
 | Configuration audit | BLOCKED | 수동 검사 결과 필요 |
-| Risk engine | BLOCKED | 선행 검사 규칙 필요 |
-| GUI | BACKLOG | v0.1 후반 또는 이후 |
-| Traffic analysis | BACKLOG | 현재 Phase 우선순위 아님 |
+| Risk engine | BLOCKED | SAFE/UNKNOWN/Coverage 규칙 미정 |
+| PHASE 1 implementation | HOLD | Manager 재승인 전 시작 금지 |
+| GUI | BACKLOG | 현재 우선순위 아님 |
+| Traffic analysis | BACKLOG | feasibility research only |
 
-## Current blocker
+## Current blockers
 
-`Test Device #001 — TP-Link Archer C50 v6`의 실제 수동 검사 기록이 아직 확정되지 않았다.
+Manager Audit 기준으로 PHASE 1 진입 전 다음이 필요하다.
+
+- Archer C50 v6 실제 수동 검사
+- 검사 항목별 획득 가능 여부
+- 인증 요구사항 (`AUTH_NONE / AUTH_USER_REQUIRED / AUTH_MANUAL_ONLY / UNAVAILABLE`)
+- 자동화 수준과 신뢰도
+- 실패 시 Fallback
+- `docs/product/requirements.md`
+- PHASE 1 Acceptance Criteria
+- Manager 재감사
 
 ## Next milestone
 
-`docs/testing/manual_test_001.md`를 완성하여 자동화 가능한 항목과 필요한 프로그램 요구사항을 도출한다.
+1. `docs/testing/manual_test_001.md` 완성
+2. `docs/research/tplink_router_identification.md` 완성
+3. 검증 결과로 `docs/product/requirements.md` 도출
+4. Manager가 Gate 0 → Gate 1 재평가
 
 ## Update rule
 
-중요한 Task가 완료되거나 Phase가 바뀔 때 Project Lead가 이 파일을 갱신한다.
+중요한 Task가 완료되거나 Phase/Gate가 바뀌거나 새 공식 문서가 등록될 때 Project Lead가 이 파일과 `PROJECT_BOARD.md`를 함께 갱신한다.
