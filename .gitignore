@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local caches / generated data
+data/cache/
+cache/
+tmp/
+temp/
+logs/
+*.log
+
+# Packet captures and sensitive network artifacts
+captures/
+*.pcap
+*.pcapng
+*.cap
+
+# Build / distribution
+build/
+dist/
+*.egg-info/
+
+# Test output
+coverage.xml
+junit.xml
