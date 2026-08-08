@@ -15,6 +15,20 @@
 - PHASE 1 development: `HOLD`
 - Overall state: `IN PROGRESS`
 
+## Active execution sequence
+
+**Sequence 001 — Device Identity & Access Baseline**
+
+| Role | Switch | Current assignment |
+|---|---|---|
+| Researcher | `ON / READY` | `TEST-001A` 수행 |
+| Manager | `OFF / WAIT` | TEST-001A 결과 전까지 Gate 재감사 대기 |
+| Developer | `OFF / HOLD` | PHASE 1 Gate 승인 전 개발 금지 |
+| Project Lead | `ON` | 결과 수집, 문서 등록, 다음 Task 결정 |
+
+Work Order:
+`docs/tasks/TEST-001A.md`
+
 ## Registered governing documents
 
 | Type | Document | Status |
@@ -24,6 +38,7 @@
 | Manager audit | `docs/audit/Router_Security_Checker_Audit_Report_v0.1.md` | CURRENT |
 | Project board | `PROJECT_BOARD.md` | MANDATORY |
 | AI entry rules | `AGENTS.md` | MANDATORY |
+| First work order | `docs/tasks/TEST-001A.md` | READY |
 
 ## Workstream status
 
@@ -33,7 +48,7 @@
 | Team operating rules | DONE | NOTICE.md 적용 |
 | Project document routing | DONE | PROJECT_BOARD.md / AGENTS.md 적용 |
 | PHASE 0 research plan | DONE | Research PRD v0.1 등록 |
-| Manual device inspection | READY | Test Device #001 수행 필요 |
+| Manual device inspection | READY | TEST-001A부터 순차 수행 |
 | Router discovery research | READY | Identity 조사부터 수행 |
 | Router identification | BLOCKED | 실제 장비 근거 필요 |
 | Firmware intelligence | BLOCKED | Identity / 실제 펌웨어 정보 필요 |
@@ -56,12 +71,19 @@ Manager Audit 기준으로 PHASE 1 진입 전 다음이 필요하다.
 - PHASE 1 Acceptance Criteria
 - Manager 재감사
 
-## Next milestone
+## Immediate milestone
 
-1. `docs/testing/manual_test_001.md` 완성
-2. `docs/research/tplink_router_identification.md` 완성
-3. 검증 결과로 `docs/product/requirements.md` 도출
-4. Manager가 Gate 0 → Gate 1 재평가
+`TEST-001A — Archer C50 v6 Identity & Access Baseline`을 완료하여 다음을 확정한다.
+
+- Default Gateway
+- Gateway MAC
+- Vendor evidence
+- Model
+- Hardware Revision
+- Admin interface
+- Authentication requirement
+
+그 뒤 Project Lead가 `TEST-001B` 또는 보완 Task 발행 여부를 판단한다.
 
 ## Update rule
 
