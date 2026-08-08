@@ -21,7 +21,42 @@ Reference:
 
 ---
 
-## P0 — NOW
+# SEQUENCE 001 — ACTIVE
+
+## TEST-001A — Archer C50 v6 Identity & Access Baseline
+
+- Parent: `TEST-001`
+- Owner: Researcher
+- Device Operator: User / Project Lead
+- Status: `READY`
+- Priority: `P0-FIRST`
+- Blocked By: None
+- Work Order: `docs/tasks/TEST-001A.md`
+- Output: `docs/testing/manual_test_001.md` Section A
+
+이번 과제에서만 확인:
+
+1. Default Gateway IPv4
+2. Gateway MAC
+3. TP-Link Vendor evidence
+4. Archer C50 Model
+5. Hardware Revision V6
+6. Admin HTTP/HTTPS interface
+7. Authentication requirement
+
+Acceptance Criteria는 `docs/tasks/TEST-001A.md`를 따른다.
+
+**Execution switch**
+
+- Researcher: `ON / READY`
+- Manager: `OFF / WAIT`
+- Developer: `OFF / HOLD`
+
+TEST-001A가 REVIEW/DONE으로 넘어가기 전에는 뒤 단계 Task를 실행하지 않는다.
+
+---
+
+## P0 — PARENT / PARALLEL REFERENCE
 
 ### TEST-001 — Archer C50 v6 Manual Inspection
 
@@ -33,7 +68,9 @@ Reference:
 - Research Guide: `docs/research/Router_Security_Checker_Internet_Research_PRD_v0.1.md`
 - Audit Guide: `docs/audit/Router_Security_Checker_Audit_Report_v0.1.md`
 
-검사 대상:
+이 Task는 큰 Parent Task이며 세부 Work Order로 순차 분해하여 수행한다.
+
+전체 검사 대상:
 
 - Gateway IP
 - Gateway MAC
@@ -65,15 +102,6 @@ Reference:
 - Fallback
 - Requirement candidate
 
-Acceptance Criteria:
-
-- 실제 Archer C50 v6에서 각 항목의 확인 방법이 기록되어 있다.
-- 획득 가능 여부와 인증 필요 여부가 기록되어 있다.
-- 자동화 가능 여부와 신뢰도가 구분되어 있다.
-- 실패 시 Fallback이 정의되어 있다.
-- 확인 불가능한 항목은 `UNKNOWN / NOT_TESTED / NOT_SUPPORTED` 중 적합한 상태로 명시되어 있다.
-- 후속 개발 Requirement 후보가 도출되어 있다.
-
 ### RESEARCH-001 — Archer C50 v6 Identity Research
 
 - Owner: Researcher
@@ -83,23 +111,7 @@ Acceptance Criteria:
 - Output: `docs/research/tplink_router_identification.md`
 - Research Plan: `docs/research/Router_Security_Checker_Internet_Research_PRD_v0.1.md`
 
-Research order:
-
-1. 공식 제품 페이지 / Hardware Revision 체계
-2. MAC OUI
-3. UPnP / SSDP Device Description
-4. HTTP / HTTPS / Web UI fingerprint
-5. TP-Link API / Web UI data source
-6. 실제 V6 장비 검증
-
-Acceptance Criteria:
-
-- Vendor / Model / Hardware Version 식별 후보 방법이 정리되어 있다.
-- 각 근거를 `SOURCE CLAIM / VERIFIED FACT / TEST DEVICE RESULT`로 구분한다.
-- Source confidence가 기록되어 있다.
-- 인증 요구사항과 자동화 난이도가 기록되어 있다.
-- 실제 장비 검증이 필요한 항목이 명시되어 있다.
-- 공식 자료를 최우선 근거로 사용한다.
+현재는 TEST-001A의 실제 장비 결과를 먼저 확보한다. 이후 인터넷 조사 결과와 교차검증한다.
 
 ---
 
@@ -113,14 +125,6 @@ Acceptance Criteria:
 - Blocked By: TEST-001, RESEARCH-001
 - Output: `docs/research/tplink_firmware_sources.md`
 
-Acceptance Criteria:
-
-- 현재 Firmware Version 획득 방법이 정리되어 있다.
-- TP-Link 공식 최신 Firmware 출처가 확정되어 있다.
-- Hardware Revision / Region / Build 차이를 기록한다.
-- 자동화 수준과 인증 요구사항이 기록되어 있다.
-- Firmware 비교 시 잘못된 region/revision 매칭을 방지할 기준이 있다.
-
 ### REQ-001 — Derive Phase 0 Requirements
 
 - Owner: Project Lead
@@ -129,14 +133,6 @@ Acceptance Criteria:
 - Blocked By: TEST-001, RESEARCH-001
 - Output: `docs/product/requirements.md`
 
-Acceptance Criteria:
-
-- Research finding과 actual device result가 구분되어 있다.
-- 검증된 내용만 Requirement로 승격되어 있다.
-- 각 Requirement가 근거 문서를 추적할 수 있다.
-- 자동 / 반자동 / 수동 / 미지원 상태가 구분되어 있다.
-- PHASE 1 Acceptance Criteria 초안이 포함되어 있다.
-
 ### AUDIT-001 — Phase 0 Evidence Review / Gate 1 Decision
 
 - Owner: Manager
@@ -144,14 +140,6 @@ Acceptance Criteria:
 - Priority: P1
 - Blocked By: TEST-001, RESEARCH-001, REQ-001
 - Output: `docs/audit/phase0_evidence_review.md`
-
-Acceptance Criteria:
-
-- PRD와 조사/테스트 결과의 충돌을 확인한다.
-- 근거가 부족한 Requirement를 표시한다.
-- SAFE / UNKNOWN / Coverage 관련 미정 사항을 추적한다.
-- PHASE 1 Acceptance Criteria가 테스트 가능한지 확인한다.
-- `PHASE 1 PASS / CONDITIONAL PASS / FAIL(HOLD)`을 명시한다.
 
 ---
 
@@ -164,13 +152,6 @@ Acceptance Criteria:
 - Priority: P2
 - Blocked By: AUDIT-001 Gate approval
 - Output: `src/discovery/`
-
-Acceptance Criteria:
-
-- Windows 활성 네트워크 어댑터에서 IPv4 Default Gateway를 반환한다.
-- 실패 시 명확한 오류/UNKNOWN 상태를 반환한다.
-- unit test가 존재한다.
-- 승인된 Requirement를 추적할 수 있다.
 
 > Manager가 Gate 1을 승인하기 전에는 구현을 시작하지 않는다.
 
@@ -185,8 +166,6 @@ Acceptance Criteria:
 - Backdoor Detection
 - Multi-vendor Support
 - Automatic Remediation
-
-Traffic feasibility 연구는 가능하지만 **Traffic Analyzer 구현은 현재 하지 않는다.**
 
 ---
 
